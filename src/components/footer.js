@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import Divider from "@material-ui/core/Divider"
 import { Link } from "gatsby"
-import LinkedInIcon from "mdi-material-ui/LinkedIn"
+import LinkedInIcon from "mdi-material-ui/Linkedin"
 import TwitterIcon from "mdi-material-ui/Twitter"
 import MediumIcon from "mdi-material-ui/Medium"
 
