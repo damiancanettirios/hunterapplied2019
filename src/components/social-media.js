@@ -1,6 +1,6 @@
 import React from "react"
 import Grid from "@material-ui/core/Grid"
-import LinkedInIcon from "mdi-material-ui/LinkedIn"
+import LinkedInIcon from "mdi-material-ui/Linkedin"
 import EmailIcon from "mdi-material-ui/At"
 import { withStyles } from "@material-ui/core/styles"
 
