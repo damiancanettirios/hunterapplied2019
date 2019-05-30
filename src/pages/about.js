@@ -6,6 +6,7 @@ import Hero from "../components/hero-div"
 import Team from "../components/team-div"
 import Layout from "../components/layout"
 import useMainHeroImage from "../hooks/use-main-hero-image"
+import withRoot from "../utils/withRoot"
 
 const AboutPage = ({ data }) => {
   const heroImage = data.heroImage
@@ -44,7 +45,7 @@ const AboutPage = ({ data }) => {
   )
 }
 
-export default AboutPage
+export default withRoot(AboutPage)
 
 export const pageQuery = graphql`
   query {

@@ -10,6 +10,7 @@ import HeroContent from "../components/hero-content"
 import TitleBar from "../components/title-bar"
 import ServicesEntry from "../components/services-entry"
 import useInsightsHeroImage from "../hooks/use-insights-hero-image"
+import withRoot from "../utils/withRoot"
 
 const styles = theme => ({
   divStyle: {
@@ -67,7 +68,7 @@ const GrantPageTemplate = ({ classes, data }) => {
   )
 }
 
-export default withStyles(styles)(GrantPageTemplate)
+export default withRoot(withStyles(styles)(GrantPageTemplate))
 
 export const grantPageQuery = graphql`
   query GrantBySlug($slug: String!) {

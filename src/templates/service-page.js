@@ -10,6 +10,7 @@ import HeroContent from "../components/hero-content"
 import TitleBar from "../components/title-bar"
 import ServicesEntry from "../components/services-entry"
 import useInsightHeroImage from "../hooks/use-insights-hero-image"
+import withRoot from "../utils/withRoot"
 
 const styles = theme => ({
   divStyle: {
@@ -68,7 +69,7 @@ const ServicePageTemplate = ({ data, classes }) => {
   )
 }
 
-export default withStyles(styles)(ServicePageTemplate)
+export default withRoot(withStyles(styles)(ServicePageTemplate))
 
 export const servicePageQuery = graphql`
   query ServiceBySlug($slug: String!) {

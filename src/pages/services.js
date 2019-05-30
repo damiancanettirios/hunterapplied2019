@@ -5,6 +5,7 @@ import Hero from "../components/hero-div"
 import ServicesEntry from "../components/services-entry"
 import Layout from "../components/layout"
 import useMainHeroImage from "../hooks/use-main-hero-image"
+import withRoot from "../utils/withRoot"
 
 const ServicesPage = ({ data }) => {
   const heroImage = data.heroImage
@@ -30,7 +31,7 @@ const ServicesPage = ({ data }) => {
   )
 }
 
-export default ServicesPage
+export default withRoot(ServicesPage)
 
 export const ServiceQuery = graphql`
   {

@@ -2,7 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 
-import withRoot from "../utils/withRoot"
 import Footer from "./footer"
 import "./layout.css"
 import "typeface-roboto"
@@ -33,4 +32,4 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default withRoot(Layout)
+export default Layout

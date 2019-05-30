@@ -4,10 +4,23 @@ import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
 import IconButton from "@material-ui/core/IconButton"
 import ChevronRightIcon from "mdi-material-ui/ChevronRight"
+import { withStyles } from "@material-ui/styles"
 
 import TitleBar from "../components/title-bar"
 
-const Entry = ({ entryTitle, entry, long }) => (
+const styles = theme => ({
+  each: {
+    display: `list-item`,
+    paddingRight: 20,
+  },
+  [theme.breakpoints.down("sm")]: {
+    each: {
+      paddingRight: 0,
+    },
+  },
+})
+
+const Entry = ({ entryTitle, entry, long, classes }) => (
   <React.Fragment>
     <div
       style={{
@@ -31,10 +44,7 @@ const Entry = ({ entryTitle, entry, long }) => (
                 to={`/${node.type}/${node.slug}`}
                 style={{ textDecoration: `none` }}
               >
-                <li
-                  key={node.id}
-                  style={{ display: `list-item`, paddingRight: 20 }}
-                >
+                <li key={node.id} className={classes.each}>
                   {long ? (
                     <Grid
                       container
@@ -109,4 +119,4 @@ const Entry = ({ entryTitle, entry, long }) => (
   </React.Fragment>
 )
 
-export default Entry
+export default withStyles(styles)(Entry)
