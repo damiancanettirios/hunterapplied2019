@@ -7,7 +7,6 @@ import Hero from "../components/hero-div"
 import ValuePropDiv from "../components/value-prop-div"
 import LatestInsights from "../components/latest-insights"
 import useMainHeroImage from "../hooks/use-main-hero-image"
-import withRoot from "../utils/withRoot"
 
 const HomePage = ({ data }) => {
   const heroImage = data.heroImage
@@ -45,7 +44,7 @@ const HomePage = ({ data }) => {
   )
 }
 
-export default withRoot(HomePage)
+export default HomePage
 
 export const HomeQuery = graphql`
   {

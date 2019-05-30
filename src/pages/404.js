@@ -4,7 +4,6 @@ import get from "lodash/get"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import withRoot from "../utils/withRoot"
 
 class NotFoundPage extends React.Component {
   render() {
@@ -19,7 +18,7 @@ class NotFoundPage extends React.Component {
   }
 }
 
-export default withRoot(NotFoundPage)
+export default NotFoundPage
 
 export const NotFoundQuery = graphql`
   {

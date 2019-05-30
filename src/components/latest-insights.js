@@ -5,9 +5,10 @@ import Button from "@material-ui/core/Button"
 
 import TitleBar from "./title-bar"
 import ArticleSummary from "./article-summary"
+import Container from "@material-ui/core/Container"
 
 export default ({ insights, topInsights }) => (
-  <div style={{ width: `80%`, margin: `0 auto` }}>
+  <Container>
     <TitleBar title={insights.title} color="black" />
     <Grid
       container
@@ -34,5 +35,5 @@ export default ({ insights, topInsights }) => (
         {insights.cta}
       </Button>
     </Grid>
-  </div>
+  </Container>
 )

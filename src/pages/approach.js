@@ -10,7 +10,6 @@ import SmallValuePropDiv from "../components/small-value-prop-div"
 import SEO from "../components/seo"
 import Layout from "../components/layout"
 import useMainHeroImage from "../hooks/use-main-hero-image"
-import withRoot from "../utils/withRoot"
 
 const styles = theme => ({
   page: {
@@ -110,7 +109,7 @@ const ApproachPage = ({ data, classes }) => {
   )
 }
 
-export default withRoot(withStyles(styles)(ApproachPage))
+export default withStyles(styles)(ApproachPage)
 
 export const pageQuery = graphql`
   query {

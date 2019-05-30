@@ -63,7 +63,10 @@ const Entry = ({ entryTitle, entry, long, classes }) => (
                         alignItems="flex-start"
                       >
                         <Grid item xs={10}>
-                          <Typography variant="h6">
+                          <Typography
+                            variant="h6"
+                            style={{ color: `black`, paddingTop: 8 }}
+                          >
                             {node.blurbTitle}
                           </Typography>
                         </Grid>

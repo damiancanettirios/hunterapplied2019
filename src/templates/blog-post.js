@@ -9,7 +9,6 @@ import Layout from "../components/layout"
 import Hero from "../components/hero-simple"
 import HeroContent from "../components/hero-insights"
 import useInsightsHeroImage from "../hooks/use-insights-hero-image"
-import withRoot from "../utils/withRoot"
 
 const styles = theme => ({
   divStyle: {
@@ -65,7 +64,7 @@ const BlogPostTemplate = ({ data, classes }) => {
   )
 }
 
-export default withRoot(withStyles(styles)(BlogPostTemplate))
+export default withStyles(styles)(BlogPostTemplate)
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {

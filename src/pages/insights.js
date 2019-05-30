@@ -8,7 +8,6 @@ import SEO from "../components/seo"
 import Hero from "../components/hero-div"
 import Layout from "../components/layout"
 import useMainHeroImage from "../hooks/use-main-hero-image"
-import withRoot from "../utils/withRoot"
 
 const styles = theme => ({
   headerhero: {
@@ -169,7 +168,7 @@ const InsightsPage = ({ data, classes }) => {
   )
 }
 
-export default withRoot(withStyles(styles)(InsightsPage))
+export default withStyles(styles)(InsightsPage)
 
 export const insightsQuery = graphql`
   query {

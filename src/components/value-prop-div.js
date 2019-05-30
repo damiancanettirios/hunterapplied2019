@@ -3,11 +3,12 @@ import { Link } from "gatsby"
 import Grid from "@material-ui/core/Grid"
 import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
+import Container from "@material-ui/core/Container"
 
 import GridEntry from "./grid-entry"
 
 export default ({ valueProp, valuePropStages }) => (
-  <div style={{ width: `80%`, margin: `0 auto` }}>
+  <Container>
     <Grid
       container
       direction="column"
@@ -46,5 +47,5 @@ export default ({ valueProp, valuePropStages }) => (
         {valueProp.cta}
       </Button>
     </Grid>
-  </div>
+  </Container>
 )

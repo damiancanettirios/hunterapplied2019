@@ -5,7 +5,6 @@ import Hero from "../components/hero-div"
 import ServicesEntry from "../components/services-entry"
 import Layout from "../components/layout"
 import useMainHeroImage from "../hooks/use-main-hero-image"
-import withRoot from "../utils/withRoot"
 
 const ProgramsPage = ({ data }) => {
   const heroImage = data.heroImage
@@ -27,7 +26,7 @@ const ProgramsPage = ({ data }) => {
   )
 }
 
-export default withRoot(ProgramsPage)
+export default ProgramsPage
 
 export const ProgramsQuery = graphql`
   {

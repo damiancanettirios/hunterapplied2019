@@ -28,6 +28,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-top-layout`,
     `gatsby-transformer-remark`,
     {
       resolve: `gatsby-source-filesystem`,

@@ -39,7 +39,7 @@ const Footer = ({ classes, logo }) => (
       <div style={{ background: "#272932" }}>
         <Grid
           container
-          spacing={24}
+          spacing={4}
           align-items="flex-start"
           style={{ padding: 30, minHeight: 100 }}
         >
@@ -192,7 +192,7 @@ const Footer = ({ classes, logo }) => (
             <Grid
               item
               container
-              spacing={24}
+              spacing={4}
               direction="row"
               justify="space-evenly"
               alignItems="center"
@@ -236,7 +236,7 @@ const Footer = ({ classes, logo }) => (
         <Divider />
         <Grid
           container
-          spacing={24}
+          spacing={4}
           direction="row"
           justify="center"
           style={{ padding: 20, color: `white` }}

@@ -7,7 +7,6 @@ import Button from "@material-ui/core/Button"
 
 import Layout from "../components/layout"
 import Hero from "../components/hero-div"
-import withRoot from "../utils/withRoot"
 
 class ContactPage extends React.Component {
   state = {
@@ -95,7 +94,7 @@ class ContactPage extends React.Component {
   }
 }
 
-export default withRoot(ContactPage)
+export default ContactPage
 
 export const ContactQuery = graphql`
   {
