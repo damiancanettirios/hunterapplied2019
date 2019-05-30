@@ -1,7 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Helmet from "react-helmet"
-import get from "lodash/get"
 import { withStyles } from "@material-ui/core/styles"
 import Typography from "@material-ui/core/Typography"
 
@@ -10,6 +9,7 @@ import Hero from "../components/hero-simple"
 import HeroContent from "../components/hero-content"
 import TitleBar from "../components/title-bar"
 import ServicesEntry from "../components/services-entry"
+import useInsightHeroImage from "../hooks/use-insights-hero-image"
 
 const styles = theme => ({
   divStyle: {
@@ -33,42 +33,39 @@ const styles = theme => ({
   },
 })
 
-class ServicePageTemplate extends React.Component {
-  render() {
-    const whiteLogo = get(this, "props.data.whiteLogo")
-    const service = get(this, "props.data.service")
-    const services = get(this, "props.data.services.edges")
-    const siteTitle = get(this.props, "data.site.siteMetadata.title")
-    const heroOverlay = get(this.props, "data.heroOverlay")
-    const heroDesign = get(this.props, "data.heroDesign")
-    const { classes } = this.props
-    return (
-      <Layout logo={whiteLogo}>
-        <Helmet title={`${service.name} | ${siteTitle}`} />
+const ServicePageTemplate = ({ data, classes }) => {
+  const service = data.service
+  const services = data.services.edges
+  const siteTitle = data.site.siteMetadata.title
+  const hero = useInsightHeroImage()
+  return (
+    <Layout logo={hero.whiteLogo}>
+      <Helmet title={`${service.name} | ${siteTitle}`} />
 
-        <Hero
-          heroImage={service.image.file.url}
-          heroOverlay={heroOverlay.imageTitle.file.url}
-          heroDesign={heroDesign.imageTitle.file.url}
-          logo={whiteLogo}
-        >
-          <HeroContent content={service} />
-        </Hero>
-        <div className={classes.divStyle}>
+      <Hero
+        heroImage={service.image.file.url}
+        heroOverlay={hero.heroOverlay.imageTitle.file.url}
+        heroDesign={hero.heroDesign.imageTitle.file.url}
+        logo={hero.whiteLogo}
+      >
+        <HeroContent content={service} />
+      </Hero>
+      <div className={classes.divStyle}>
+        <div style={{ width: `75%`, margin: `0 auto` }}>
           <Typography variant="h6" style={{ fontWeight: `normal` }}>
             {service.longDescript.longDescript}
           </Typography>
-          <TitleBar color="black" title="Our Approach" />
-          <div />
         </div>
-        <ServicesEntry
-          entryTitle={"Consulting Services"}
-          entry={services}
-          long={false}
-        />
-      </Layout>
-    )
-  }
+        <TitleBar color="black" title="Our Approach" />
+        <div />
+      </div>
+      <ServicesEntry
+        entryTitle={"Consulting Services"}
+        entry={services}
+        long={false}
+      />
+    </Layout>
+  )
 }
 
 export default withStyles(styles)(ServicePageTemplate)
@@ -102,33 +99,6 @@ export const servicePageQuery = graphql`
           shortBlurb
           slug
           type
-        }
-      }
-    }
-    whiteLogo: contentfulLogo(name: { eq: "white_text" }) {
-      id
-      name
-      image {
-        file {
-          url
-        }
-      }
-    }
-    heroOverlay: contentfulHeros(title: { eq: "GreyOverlay" }) {
-      id
-      title
-      imageTitle {
-        file {
-          url
-        }
-      }
-    }
-    heroDesign: contentfulHeros(title: { eq: "Flat Bottom" }) {
-      id
-      title
-      imageTitle {
-        file {
-          url
         }
       }
     }

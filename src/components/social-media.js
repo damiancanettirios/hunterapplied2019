@@ -5,9 +5,6 @@ import EmailIcon from "mdi-material-ui/At"
 import { withStyles } from "@material-ui/core/styles"
 
 const styles = theme => ({
-  page: {
-    margin: `0 auto`,
-  },
   socialIcons: {
     color: `grey`,
     "&:hover": {
@@ -26,7 +23,7 @@ const SocialMedia = ({ email, linkedIn, classes }) => (
       alignItems="center"
     >
       {linkedIn != null ? (
-        <Grid item>
+        <Grid item style={{ width: 40 }}>
           <a href={`${linkedIn}`}>
             <LinkedInIcon className={classes.socialIcons} />
           </a>
@@ -35,7 +32,7 @@ const SocialMedia = ({ email, linkedIn, classes }) => (
         <div />
       )}
       {email != null ? (
-        <Grid item>
+        <Grid item style={{ width: 40 }}>
           <a href={`mailto:${email}`}>
             <EmailIcon className={classes.socialIcons} />
           </a>

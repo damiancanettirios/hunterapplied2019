@@ -14,7 +14,7 @@ export default ({ heroContent }) => (
         {heroContent.title}
       </Typography>
     </Grid>
-    <Grid item style={{ width: 100, marginTop: 20 }}>
+    <Grid item style={{ width: 100, marginTop: 20, margin: `0 auto` }}>
       <img
         alt={heroContent.author.image.title}
         src={heroContent.author.image.file.url}

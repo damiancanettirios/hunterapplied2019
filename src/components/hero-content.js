@@ -12,7 +12,7 @@ export default ({ content }) => (
     justify="flex-start"
     alignContent="flex-start"
     style={{
-      backgroundColor: `rgba(255,255,255,0.7)`,
+      backgroundColor: `rgba(255,255,255,0.9)`,
       color: `black`,
       padding: 20,
       borderTop: `5px solid #009688`,
@@ -34,7 +34,7 @@ export default ({ content }) => (
         marginBottom: 20,
         width: 36,
         height: 5,
-        backgroundColor: "#009688",
+        backgroundColor: `#009688`,
       }}
     />
     <Typography variant="h6" color="inherit" style={{ fontWeight: `normal` }}>
