@@ -10,7 +10,7 @@ import Navigation from "./navigation"
 
 const useStyles = makeStyles(theme => ({
   image: {
-    maxHeight: 700,
+    height: 700,
     width: `100%`,
     padding: `10em 0 20em 0`,
     textAlign: `center`,
