@@ -72,6 +72,7 @@ export const HomeQuery = graphql`
       cta
       ctaPage
       page
+      isLongDescript
     }
     valueProp: contentfulPageContent(
       page: { eq: "Home" }

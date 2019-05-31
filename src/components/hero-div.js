@@ -95,8 +95,9 @@ const HeroDiv = ({ logo, heroImage, heroOverlay, heroContent, heroDesign }) => {
           )}
         </Container>
       </Box>
-      {heroContent.page !== "Home" ? (
+      {heroContent.isLongDescript ? (
         <Container
+          maxWidth="md"
           style={{
             paddingTop: 60,
             paddingBottom: 60,

@@ -14,6 +14,7 @@ export default ({ insights, topInsights }) => (
       container
       direction="row"
       justify="flex-start"
+      spacing={2}
       style={{ minHeight: 300 }}
     >
       {topInsights.map(({ node }) => (

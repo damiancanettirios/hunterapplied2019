@@ -1,97 +1,98 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql } from "gatsby"
-import get from "lodash/get"
-import Grid from "@material-ui/core/Grid"
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
+import Container from "@material-ui/core/Container"
+import { makeStyles } from "@material-ui/styles"
+import Box from "@material-ui/core/Box"
 
 import Layout from "../components/layout"
 import Hero from "../components/hero-div"
+import useMainHeroImage from "../hooks/use-main-hero-image"
 
-class ContactPage extends React.Component {
-  state = {
-    name: "",
-    email: "",
-    note: "",
-  }
+const useStyles = makeStyles({
+  input: {
+    width: 400,
+    margin: `20px auto`,
+  },
+})
 
-  render() {
-    const heroImage = get(this, "props.data.heroImage")
-    const heroOverlay = get(this, "props.data.heroOverlay")
-    const pointBottom = get(this, "props.data.pointBottom")
-    const whiteLogo = get(this, "props.data.whiteLogo")
-    const heroContent = get(this, "props.data.heroContent")
+const ContactPage = ({ data }) => {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [note, setNote] = useState("")
+  const heroImage = data.heroImage
+  const hero = useMainHeroImage()
+  const heroContent = data.heroContent
+  const classes = useStyles()
 
-    return (
-      <Layout logo={whiteLogo}>
-        <Hero
-          heroImage={heroImage}
-          heroOverlay={heroOverlay}
-          heroDesign={pointBottom}
-          logo={whiteLogo}
-          heroContent={heroContent}
-        />
-        <div style={{ marginBottom: 60 }}>
-          <form
-            action="https://formspree.io/damian@hunterapplied.com"
-            method="POST"
-            style={{ margin: `0 auto` }}
-          >
-            <Grid
-              container
-              spacing={40}
-              direction="column"
-              alignItems="center"
-              justify="flex-start"
-            >
-              <Grid item>
-                <TextField
-                  label="Your Name"
-                  variant="outlined"
-                  type="text"
-                  name="name"
-                  value={this.state.name}
-                  style={{ width: 400 }}
-                />
-              </Grid>
-              <Grid item>
-                <TextField
-                  label="Your Email"
-                  variant="outlined"
-                  type="email"
-                  name="email"
-                  value={this.state.email}
-                  style={{ width: 400 }}
-                />
-              </Grid>
-              <Grid item>
-                <TextField
-                  label="How Can We Help?"
-                  multiline
-                  rowsMax="8"
-                  rows="4"
-                  value={this.state.note}
-                  variant="outlined"
-                  style={{ width: 400 }}
-                />
-              </Grid>
-              <Grid item>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  type="submit"
-                  size="large"
-                  style={{ width: 400 }}
-                >
-                  Submit
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
-        </div>
-      </Layout>
-    )
-  }
+  return (
+    <Layout logo={hero.whiteLogo}>
+      <Hero
+        heroImage={heroImage}
+        heroOverlay={hero.heroOverlay}
+        heroDesign={hero.heroDesign}
+        logo={hero.whiteLogo}
+        heroContent={heroContent}
+      />
+      <Container maxWidth="md">
+        <form
+          action="https://formspree.io/damian@hunterapplied.com"
+          method="POST"
+        >
+          <Container>
+            <Box>
+              <TextField
+                value={name}
+                onChange={e => setName(e.target.value)}
+                label="Your Name"
+                variant="outlined"
+                type="text"
+                name="name"
+                required
+                className={classes.input}
+              />
+            </Box>
+            <Box>
+              <TextField
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                label="Your Email"
+                variant="outlined"
+                type="email"
+                name="email"
+                required
+                className={classes.input}
+              />
+            </Box>
+            <Box>
+              <TextField
+                label="How Can We Help?"
+                multiline
+                value={note}
+                onChange={e => setNote(e.target.value)}
+                rowsMax="8"
+                rows="4"
+                variant="outlined"
+                className={classes.input}
+              />
+            </Box>
+            <Box>
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                size="large"
+                className={classes.input}
+              >
+                Submit
+              </Button>
+            </Box>
+          </Container>
+        </form>
+      </Container>
+    </Layout>
+  )
 }
 
 export default ContactPage
@@ -102,33 +103,6 @@ export const ContactQuery = graphql`
       id
       title
       imageTitle {
-        file {
-          url
-        }
-      }
-    }
-    heroOverlay: contentfulHeros(title: { eq: "GreyOverlay" }) {
-      id
-      title
-      imageTitle {
-        file {
-          url
-        }
-      }
-    }
-    pointBottom: contentfulHeros(title: { eq: "Point Bottom" }) {
-      id
-      title
-      imageTitle {
-        file {
-          url
-        }
-      }
-    }
-    whiteLogo: contentfulLogo(name: { eq: "white_text" }) {
-      id
-      name
-      image {
         file {
           url
         }
@@ -149,6 +123,7 @@ export const ContactQuery = graphql`
       cta
       ctaPage
       page
+      isLongDescript
     }
   }
 `

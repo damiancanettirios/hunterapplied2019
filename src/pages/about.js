@@ -91,6 +91,7 @@ export const pageQuery = graphql`
       cta
       ctaPage
       page
+      isLongDescript
     }
     heroImage: contentfulHeros(title: { eq: "SydneyOperaHouse" }) {
       id

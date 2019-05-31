@@ -1,108 +1,32 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
-import Typography from "@material-ui/core/Typography"
+import { graphql } from "gatsby"
+import Card from "@material-ui/core/Card"
 import Grid from "@material-ui/core/Grid"
-import { withStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/styles"
+import Container from "@material-ui/core/Container"
 
 import SEO from "../components/seo"
 import Hero from "../components/hero-div"
 import Layout from "../components/layout"
 import useMainHeroImage from "../hooks/use-main-hero-image"
+import InsightContent from "../components/insight-content"
+import InsightImage from "../components/insight-image"
+import InsightAuthor from "../components/insight-author"
+import TitleBar from "../components/title-bar"
 
-const styles = theme => ({
+const useStyles = makeStyles({
   headerhero: {
     backgroundColor: `#E7ECEF`,
     background: `#E7ECEF`,
   },
-  page: {
-    maxWidth: `90%`,
-    margin: `0 auto`,
-  },
-  activeLink: {
-    textDecoration: `none`,
-    color: `black`,
-    "& :hover": {
-      textDecoration: "underline",
-      color: `#009688`,
-    },
-  },
-  textLink: {
-    paddingTop: 10,
-    fontWeight: `bold`,
-  },
-  [theme.breakpoints.down("sm")]: {
-    page: {
-      margin: `0 auto`,
-      padding: 20,
-      textAlign: `center`,
-    },
-  },
 })
 
-const InsightAuthor = ({ node }) => (
-  <React.Fragment>
-    <Grid item style={{ paddingBottom: 0 }}>
-      <img
-        alt={node.author.name}
-        src={node.author.image.file.url}
-        style={{ height: 50, margin: `0px 10px 0px 0px` }}
-      />
-    </Grid>
-    <Grid item style={{ paddingBottom: 0 }}>
-      <Typography
-        variant="body2"
-        color="textSecondary"
-        style={{ fontWeight: `bold` }}
-      >
-        {node.author.name}
-      </Typography>
-      <Typography variant="body2" color="textSecondary">
-        {node.publishDate}
-      </Typography>
-    </Grid>
-  </React.Fragment>
-)
-
-const InsightImage = ({ node }) => (
-  <React.Fragment>
-    <Grid item container justify="center">
-      <Link to={`/insights/${node.slug}`}>
-        <img
-          alt={node.imageTitle.title}
-          src={node.imageTitle.file.url}
-          style={{
-            margin: 0,
-            maxHeight: 250,
-            borderRadius: `5px`,
-          }}
-        />
-      </Link>
-    </Grid>
-  </React.Fragment>
-)
-
-const InsightContent = ({ node, classes }) => (
-  <React.Fragment>
-    <Grid item style={{ width: `95%`, margin: `0 auto` }}>
-      <Link to={`/insights/${node.slug}`} className={classes.activeLink}>
-        <Typography
-          variant="body1"
-          color="inherit"
-          className={classes.textLink}
-        >
-          {node.title}
-        </Typography>
-      </Link>
-      <Typography variant="body1">{node.description.description}</Typography>
-    </Grid>
-  </React.Fragment>
-)
-
-const InsightsPage = ({ data, classes }) => {
+const InsightsPage = ({ data }) => {
   const posts = data.allContentfulBlogPost.edges
   const heroImage = data.heroImage
   const hero = useMainHeroImage()
   const heroContent = data.heroContent
+  const classes = useStyles()
   return (
     <Layout logo={hero.whiteLogo}>
       <SEO
@@ -123,52 +47,32 @@ const InsightsPage = ({ data, classes }) => {
         logo={hero.whiteLogo}
         heroContent={heroContent}
       />
-      <div className={classes.page}>
+      <Container>
+        <TitleBar title="Articles to explore" color="black" />
         <Grid
           container
           direction="row"
-          spacing={24}
+          spacing={2}
           style={{ marginBottom: 60 }}
         >
           {posts.map(({ node }) => (
             <Grid key={node.id} item container md={4} sm={12} xs={12}>
-              <Grid
-                container
-                direction="column"
-                justify="space-between"
-                alignItems="center"
-                spacing={8}
-                style={{
-                  border: `1px solid #E7ECEF`,
-                  borderTop: `3px solid #009688`,
-                }}
-              >
-                <Grid item container direction="column">
+              <Card style={{ borderTop: `3px solid #009688` }}>
+                <Container style={{ padding: 20 }}>
                   <InsightImage node={node} />
                   <InsightContent node={node} classes={classes} />
-                </Grid>
-                <Grid
-                  item
-                  container
-                  direction="row"
-                  style={{
-                    paddingBottom: 0,
-                    width: `95%`,
-                    margin: `0 auto`,
-                  }}
-                >
                   <InsightAuthor node={node} />
-                </Grid>
-              </Grid>
+                </Container>
+              </Card>
             </Grid>
           ))}
         </Grid>
-      </div>
+      </Container>
     </Layout>
   )
 }
 
-export default withStyles(styles)(InsightsPage)
+export default InsightsPage
 
 export const insightsQuery = graphql`
   query {

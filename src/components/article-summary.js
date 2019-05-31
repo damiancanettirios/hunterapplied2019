@@ -27,6 +27,7 @@ const ArticleSummary = ({ article }) => {
         style={{
           border: `1px solid #E7ECEF`,
           marginBottom: 20,
+          padding: 0,
         }}
       >
         <Link to={`/Blog/${article.slug}`}>

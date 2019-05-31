@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Typography from "@material-ui/core/Typography"
-import { withStyles } from "@material-ui/core/styles"
+import { makeStyles } from "@material-ui/styles"
 import Grid from "@material-ui/core/Grid"
 
 import Hero from "../components/hero-div"
@@ -11,7 +11,7 @@ import SEO from "../components/seo"
 import Layout from "../components/layout"
 import useMainHeroImage from "../hooks/use-main-hero-image"
 
-const styles = theme => ({
+const useStyles = makeStyles({
   page: {
     width: `80%`,
     margin: `0 auto`,
@@ -34,13 +34,14 @@ const styles = theme => ({
   },
 })
 
-const ApproachPage = ({ data, classes }) => {
+const ApproachPage = ({ data }) => {
   const heroImage = data.heroImage
   const hero = useMainHeroImage()
   const heroContent = data.heroContent
   const serviceModel = data.serviceModelImage
   const steps = data.blurbs.edges
   const model = data.model.edges
+  const classes = useStyles()
   return (
     <Layout logo={hero.whiteLogo}>
       <SEO title="Approach" />
@@ -109,7 +110,7 @@ const ApproachPage = ({ data, classes }) => {
   )
 }
 
-export default withStyles(styles)(ApproachPage)
+export default ApproachPage
 
 export const pageQuery = graphql`
   query {
@@ -172,6 +173,7 @@ export const pageQuery = graphql`
       cta
       ctaPage
       page
+      isLongDescript
     }
     serviceModelImage: contentfulLogo(name: { eq: "Hiking" }) {
       name

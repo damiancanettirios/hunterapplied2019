@@ -54,6 +54,7 @@ export const ProgramsQuery = graphql`
       cta
       ctaPage
       page
+      isLongDescript
     }
     grants: allContentfulGrantPrograms(sort: { fields: sequence, order: ASC }) {
       edges {

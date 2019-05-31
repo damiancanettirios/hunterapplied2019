@@ -58,6 +58,7 @@ export const ServiceQuery = graphql`
       cta
       ctaPage
       page
+      isLongDescript
     }
     services: allContentfulServices(sort: { fields: sequence, order: ASC }) {
       edges {
